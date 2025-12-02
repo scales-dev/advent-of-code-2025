@@ -2,26 +2,20 @@ package com.scales.days;
 
 import com.scales.Main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 
+// https://adventofcode.com/2025/day/1
 public class Day1 {
     public static void run() throws IOException {
-        // "Puzzle inputs differ by user.  Please log in to get your puzzle input."
-        InputStream fileStream = Main.class.getResourceAsStream("/day1.txt");
-        assert fileStream != null;
-
-        BufferedReader fileReader = new BufferedReader(new InputStreamReader(fileStream));
-
         // "The dial starts by pointing at 50."
         int pos = 50;
 
         int timesLandedOn0 = 0;
         int timesCrossed0 = 0;
 
-        for (String line; (line = fileReader.readLine()) != null;) {
+        ArrayList<String> lines = Main.parseDayLines(1);
+        for (String line : lines) {
             int prevPos = pos;
 
             // "A rotation starts with an L or R which indicates whether the rotation should be to the left (toward lower numbers) or to the right (toward higher numbers)."

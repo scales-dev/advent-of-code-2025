@@ -2,25 +2,20 @@ package com.scales.days;
 
 import com.scales.Main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
+// https://adventofcode.com/2025/day/2
 public class Day2 {
     public static void run() throws IOException {
-        InputStream fileStream = Main.class.getResourceAsStream("/day2.txt");
-        assert fileStream != null;
+        String line = Main.parseDayLine(2);
 
-        BufferedReader fileReader = new BufferedReader(new InputStreamReader(fileStream));
-
-        String line = fileReader.readLine();
         String[] ranges = line.split(",");
 
         long invalidTotalP1 = 0;
         long invalidTotalP2 = 0;
 
         for (String range : ranges) {
+            // "The ranges are separated by commas (,); each range gives its first ID and last ID separated by a dash (-)."
             long lowerBound = Long.parseLong(range.split("-")[0]);
             long upperBound = Long.parseLong(range.split("-")[1]);
 
@@ -46,14 +41,26 @@ public class Day2 {
         return !firstHalf.equals(secondHalf);
     }
 
-    // not very fast, takes 2453ms seconds on my computer, however, I coded it very fast; it was my first idea.
+    // as optimised as I could think of, still takes ~170ms on my computer :(
     private static boolean isValidPart2(long num) {
         String str = String.valueOf(num);
 
         // yeah str.length() / 2, I'm kinda a god at optimising :pray:
-        for (int i = 0; i <= str.length() / 2; i++) {
+        for (int i = 1; i <= str.length() / 2; i++) {
+            // if the string length is not divisible by i, then it can't be the repeated string
+            if (str.length() % i != 0) continue;
+
+            // .substring(0, i) is somehow faster than adding to a string builder with .charAt or toCharArray
             String repeatedableString = str.substring(0, i);
-            if (str.replaceAll(repeatedableString, "").isEmpty()) return false;
+
+            // we loop through the rest of the string and see if at any point stops matching the current repeated string
+            for (int j = i; j < str.length(); j+=i) {
+                // yay, it doesn't match; the silly elf has NOT faked this ID
+                if (!str.substring(j, j + i).equals(repeatedableString)) break;
+
+                // wow, we made it, go team!
+                if (j + i == str.length()) return false;
+            }
         }
 
         return true;
