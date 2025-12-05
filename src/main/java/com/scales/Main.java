@@ -3,6 +3,7 @@ package com.scales;
 import com.scales.days.Day1;
 import com.scales.days.Day2;
 import com.scales.days.Day3;
+import com.scales.days.Day4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class Main {
                 case 1 -> Day1.run();
                 case 2 -> Day2.run();
                 case 3 -> Day3.run();
+                case 4 -> Day4.run();
             }
 
             System.out.println("Time taken: " + (System.currentTimeMillis() - time) + "ms");
