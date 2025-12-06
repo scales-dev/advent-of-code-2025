@@ -17,7 +17,6 @@ public class Main {
         while (true) {
             System.out.print("Enter which solution you would like to run: ");
             int solution = scanner.nextInt();
-
             long time = System.currentTimeMillis();
             switch (solution) {
                 case 1 -> Day1.run();
@@ -25,6 +24,7 @@ public class Main {
                 case 3 -> Day3.run();
                 case 4 -> Day4.run();
                 case 5 -> Day5.run();
+                case 6 -> Day6.run();
             }
 
             System.out.println("Time taken: " + (System.currentTimeMillis() - time) + "ms");
