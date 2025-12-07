@@ -7,16 +7,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hi, thank you for checking out my advent of code solutions!");
 
-        //canner scanner = new Scanner(System.in);
-        //hile (true) {
-        //   System.out.print("Enter which solution you would like to run: ");
-        //   int solution = scanner.nextInt();
-        int solution = 7;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter which solution you would like to run: ");
+            int solution = scanner.nextInt();
             long time = System.currentTimeMillis();
             switch (solution) {
                 case 1 -> Day1.run();
@@ -29,7 +29,7 @@ public class Main {
             }
 
             System.out.println("Time taken: " + (System.currentTimeMillis() - time) + "ms");
-        //}
+        }
     }
 
     // "Puzzle inputs differ by user.  Please log in to get your puzzle input."
