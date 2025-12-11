@@ -26,6 +26,7 @@ public class Main {
                 case 5 -> Day5.run();
                 case 6 -> Day6.run();
                 case 7 -> Day7.run();
+                case 8 -> Day8.run();
             }
 
             System.out.println("Time taken: " + (System.currentTimeMillis() - time) + "ms");
